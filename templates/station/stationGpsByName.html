@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>gps</title>
+    <script async src="//jsfiddle.net/jscodedev/ukqqvL9h/1/embed/"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.min.js') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.min.css') }}">
+</head>
+<body>
+<h3>정류장 버스 도착 정보</h3>
+
+<!-- 이미지 지도를 표시할 div 입니다 -->
+<div id="map" style="width:100%;height:350px;"></div>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5a4d02a1d8eaf5daed584823dcae3470&libraries=services"></script>
+
+
+<div class="row">
+
+
+<table id="example-table-1" width="100%" border="1" class="table table-bordered table-hover text-center">
+
+    <tr><th>정류소 ID</th><th>정류소명</th><th>정류소번호</th></tr>
+    <tr>
+        <td>{{station_gps[0].stationId}}</td>
+        <td >{{station_gps[0].stationNm}}</td>
+        <td >{{station_gps[0].arsId2}}</td>
+    </tr>
+
+</table>
+
+    <table id="example-table-2" width="100%" border="1" class="table table-bordered table-hover text-center">
+    <tr><th>노선ID</th><th>버스 번호</th><th>첫차시간</th>
+            <th>막차시간</th><th>배차간격</th>
+           <th>첫번째도착예정버스의최종보고시간</th>
+            <th>첫번째도착예정버스의도착정보메시지</th>
+            <th>두번째도착예정버스의도착정보메시지</th>
+        </tr>
+    {% for i in range(lowStaionByUid | length) %}
+        <tr>
+            <td>{{lowStaionByUid[i].busRouteId}}</td>
+            <td>{{lowStaionByUid[i].rtNm}}</td>
+            <td>{{lowStaionByUid[i].firstTm}}</td>
+            <td>{{lowStaionByUid[i].lastTm}}</td>
+            <td>{{lowStaionByUid[i].term}}</td>
+
+            <td>{{lowStaionByUid[i].repTm1}}</td>
+            <td>{{lowStaionByUid[i].arrmsg1}}</td>
+
+            <td>{{lowStaionByUid[i].arrmsg2}}</td>
+
+        </tr>
+    {% endfor %}
+
+
+</div>
+<div name="gpsX" id="gpsX" style="font-size:2px; color:white; text-align:center;">{{station_gps[0].gpsX}}</div>
+<div name="gpsY" id="gpsY" style="font-size:2px; color:white; text-align:center;">{{station_gps[0].gpsY}}</div>
+
+<script>
+
+var Lat = document.getElementById("gpsY").innerText; //위도 37.4996343963
+Lat = Number(Lat);
+var Lng = document.getElementById("gpsX").innerText; //경도 126.8679976691
+Lng = Number(Lng);
+
+var mapContainer = document.getElementById('map'), // 지도를 표시할 div
+    mapOption = {
+        center: new kakao.maps.LatLng(Lat, Lng), // 지도의 중심좌표
+        level: 3 // 지도의 확대 레벨
+    };
+
+var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+
+// 마커가 표시될 위치입니다
+var markerPosition  = new kakao.maps.LatLng(Lat, Lng);
+
+// 마커를 생성합니다
+var marker = new kakao.maps.Marker({
+    position: markerPosition
+});
+
+// 마커가 지도 위에 표시되도록 설정합니다
+marker.setMap(map);
+
+// 아래 코드는 지도 위의 마커를 제거하는 코드입니다
+// marker.setMap(null);
+</script>
+
+
+
+
+
+</body>
+</html>

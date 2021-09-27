@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>gps</title>
+</head>
+<body>
+<h3>정류장 버스 도착 정보</h3>
+<table border="1">
+    <tr><th>정류소 ID</th><th>정류소명</th><th>정류소 좌표X</th><th>정류소 좌표Y</th><th>정류소고유번호</th><th>거리</th><th>정류소 좌표X</th><th>정류소 좌표Y</th><th></th>정류소타입</tr>
+{% for s in station_gps %}
+    <tr>
+        <td>{{s.stationId}}</td>
+        <td>{{s.stationNm}}</td>
+        <td>{{s.gpsX}}</td>
+        <td>{{s.gpsY}}</td>
+        <td>{{s.arsId}}</td>
+        <td>{{s.dist}}</td>
+        <td>{{s.posX}}</td>
+        <td>{{s.posY}}</td>
+        <td>{{s.stationTp}}</td>
+    </tr>
+{% endfor %}
+</table>
+</body>
+</html>
