@@ -1,0 +1,6 @@
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+th {
+    font-family: 'Pretendard';
+    text-align : center;
+    vertical-align : middle;
+}
