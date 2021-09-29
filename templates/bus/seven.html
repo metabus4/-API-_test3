@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <script async src="//jsfiddle.net/jscodedev/ukqqvL9h/1/embed/"></script>
+
+    <!-- css -->
+    <link type="text/css" rel="stylesheet" href="{{url_for('static', filename='css/jh.css')}}">
+    <link type="text/css" rel="stylesheet" href="{{url_for('static', filename='css/sj_nav.css')}}">
+    <link type="text/css" rel="stylesheet" href="{{url_for('static', filename='css/sj_index.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.min.js') }}">
+
+</head>
+
+<body style="text-align:center;">
+
+<img src="../../static/img/bus_logo.png" class="logo">
+
+<div class="title" style="margin-top:15px;">
+    <h3>고유번호 별 정류소 항목조회</h3>
+</div>
+
+<table id="example-table-1" width="100%" border="1" class="table table-bordered table-hover text-center"
+style="margin-top:30px; width:80%; text-align:center; margin-left:auto; margin-right:auto;">
+    <tr><th>정류소 ID</th><th>정류소명</th><th>정류소 고유번호</th><th>노선ID</th><th>노선명</th><th>정류소 좌표X</th><th>정류소 좌표Y</th><th>정류소타입</th><th>첫차시간</th><th>막차시간</th><th>배차간격</th><th>노선유형</th><th>요청정류소순번</th></tr>
+{% for i in infos %}
+    <tr>
+        <td>{{i.stId}}</td>
+        <td>{{i.stNm}}</td>
+        <td>{{i.arsId}}</td>
+        <td>{{i.busRouteId}}</td>
+        <td>{{i.rtNm}}</td>
+        <td>{{i.gpsX}}</td>
+        <td>{{i.gpsY}}</td>
+        <td>{{i.stationTp}}</td>
+        <td>{{i.firstTm}}</td>
+        <td>{{i.lastTm}}</td>
+        <td>{{i.term}}</td>
+        <td>{{i.routeType}}</td>
+        <td>{{i.staOrd}}</td>
+    </tr>
+{% endfor %}
+</table>
+<a href="/">되돌아가기</a>
+<br><br><br>
+</body>
+</html>

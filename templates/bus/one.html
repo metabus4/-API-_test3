@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <script async src="//jsfiddle.net/jscodedev/ukqqvL9h/1/embed/"></script>
+
+    <!-- css -->
+    <link type="text/css" rel="stylesheet" href="{{url_for('static', filename='css/jh.css')}}">
+    <link type="text/css" rel="stylesheet" href="{{url_for('static', filename='css/sj_nav.css')}}">
+    <link type="text/css" rel="stylesheet" href="{{url_for('static', filename='css/sj_index.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.min.js') }}">
+
+</head>
+
+<body style="text-align:center;">
+
+<img src="../../static/img/bus_logo.png" class="logo">
+
+<div class="title" style="margin-top:15px;">
+    <h3>명칭 별 교통약자전용 정류소 목록조회</h3>
+</div>
+
+<table id="example-table-1" width="100%" border="1" class="table table-bordered table-hover text-center"
+style="margin-top:30px; width:80%; text-align:center; margin-left:auto; margin-right:auto;">
+    <tr><th>정류소 ID</th><th>정류소명</th><th>정류소 좌표X</th><th>정류소 좌표Y</th><th>정류소고유번호</th><th>정류소 좌표X</th><th>정류소 좌표Y</th></tr>
+{% for s in st1 %}
+    <tr>
+        <td>{{s.stId}}</td>
+        <td>{{s.stNm}}</td>
+        <td>{{s.tmX}}</td>
+        <td>{{s.tmY}}</td>
+        <td>{{s.arsId}}</td>
+        <td>{{s.posX}}</td>
+        <td>{{s.posY}}</td>
+    </tr>
+{% endfor %}
+</table>
+<a href="/">되돌아가기</a>
+<br><br><br>
+</body>
+</html>
